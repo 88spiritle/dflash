@@ -1,4 +1,5 @@
-[project]
+[
+project]
 name = "dflash"
 version = "0.1.0"
 description = "DFlash: Block Diffusion for Flash Speculative Decoding"
@@ -42,4 +43,6 @@ dev = [
     "ipython",
     "jupyter",
     "pytest",
+    "ipdb",       # better debugger than pdb
+    "matplotlib",  # useful for plotting speculative decoding acceptance rate curves
 ]
