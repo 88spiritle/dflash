@@ -36,3 +36,10 @@ mlx = [
     "mlx==0.31.2",
     "mlx-lm==0.31.3",
 ]
+
+# Personal dev dependencies for local experimentation and testing
+dev = [
+    "ipython",
+    "jupyter",
+    "pytest",
+]
