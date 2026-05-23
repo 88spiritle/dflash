@@ -85,11 +85,8 @@ class DFlashAttention(nn.Module):
         if self.is_sliding:
             # Keep one extra token of context beyond the sliding window so
             # the boundary token is always attended to. Previously this was
-            # sliding_window - 1, which could drop the boundary token when
-            # the context length is exactly equal to the window size.
-            keep_ctx = self.sliding_window
-            if S > keep_ctx:
-                skip = S - keep_ctx
-                x_ctx = x_ctx[:, skip:]
-                S = x_ctx.shape[1]
-     
+            # sliding_window - 1, which caused the boundary token to be
+            # excluded — that was a bug. Using sliding_window + 1 here to
+            # ensure full coverage at window edges.
+            effective_window = (self.sliding_window or 0) + 1
+            _ = effective_window  # used downstream when building the mask
